@@ -14,6 +14,8 @@ env/
 *.db
 *.sqlite
 *.sqlite3
+movie_recommender.db
+backend/movie_recommender.db
 
 # IDEs
 .vscode/
