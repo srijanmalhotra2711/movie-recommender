@@ -113,27 +113,16 @@ export default function BrowsePage() {
     router.push('/login');
   };
 
-  const headerStyle = {
+  const headerStyle: React.CSSProperties = {
     background: '#18181b',
     borderBottom: '1px solid #27272a',
     padding: '16px',
-    position: 'sticky' as const,
+    position: 'sticky',
     top: 0,
     zIndex: 50,
   };
 
-  const searchInputStyle = {
-    width: '100%',
-    padding: '12px 16px 12px 45px',
-    background: '#27272a',
-    border: '2px solid #3f3f46',
-    borderRadius: '10px',
-    color: 'white',
-    fontSize: '16px',
-    outline: 'none',
-  };
-
-  const buttonStyle = {
+  const buttonStyle: React.CSSProperties = {
     padding: '12px 24px',
     background: 'linear-gradient(to right, #dc2626, #991b1b)',
     color: 'white',
@@ -142,6 +131,17 @@ export default function BrowsePage() {
     fontSize: '16px',
     fontWeight: '600',
     cursor: 'pointer',
+  };
+
+  const searchInputStyle: React.CSSProperties = {
+    width: '100%',
+    padding: '12px 16px 12px 45px',
+    background: '#27272a',
+    border: '2px solid #3f3f46',
+    borderRadius: '10px',
+    color: 'white',
+    fontSize: '16px',
+    outline: 'none',
   };
 
   if (loading && movies.length === 0) {
@@ -182,7 +182,6 @@ export default function BrowsePage() {
           </h1>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <button 
-              onClick={() => router.push('/browse')} 
               style={{ ...buttonStyle, background: '#dc2626' }}
             >
               Browse
@@ -192,6 +191,24 @@ export default function BrowsePage() {
               style={{ padding: '12px 24px', background: 'transparent', color: '#9ca3af', border: 'none', cursor: 'pointer', fontSize: '16px' }}
             >
               Recommendations
+            </button>
+            <button 
+              onClick={() => router.push('/trending')} 
+              style={{ padding: '12px 24px', background: 'transparent', color: '#9ca3af', border: 'none', cursor: 'pointer', fontSize: '16px' }}
+            >
+              Trending
+            </button>
+            <button 
+              onClick={() => router.push('/analytics')} 
+              style={{ padding: '12px 24px', background: 'transparent', color: '#9ca3af', border: 'none', cursor: 'pointer', fontSize: '16px' }}
+            >
+              Analytics
+            </button>
+            <button 
+              onClick={() => router.push('/ab-testing')} 
+              style={{ padding: '12px 24px', background: 'transparent', color: '#9ca3af', border: 'none', cursor: 'pointer', fontSize: '16px' }}
+            >
+              A/B Testing
             </button>
             <button 
               onClick={() => router.push('/profile')} 
@@ -210,7 +227,6 @@ export default function BrowsePage() {
       </header>
 
       <main style={{ maxWidth: '1400px', margin: '0 auto', padding: '30px 20px' }}>
-        {/* Title */}
         <div style={{ marginBottom: '30px' }}>
           <h2 style={{ fontSize: '36px', fontWeight: 'bold', color: 'white', margin: '0 0 10px 0' }}>
             Discover Movies
@@ -220,7 +236,6 @@ export default function BrowsePage() {
           </p>
         </div>
 
-        {/* Search & Filters */}
         <div style={{ marginBottom: '30px' }}>
           <form onSubmit={handleSearch} style={{ display: 'flex', gap: '12px', marginBottom: '20px' }}>
             <div style={{ flex: 1, position: 'relative' }}>
@@ -247,7 +262,6 @@ export default function BrowsePage() {
             </button>
           </form>
 
-          {/* Filter Panel */}
           {showFilters && (
             <div style={{ background: '#18181b', border: '1px solid #27272a', borderRadius: '12px', padding: '24px' }}>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginBottom: '20px' }}>
@@ -319,7 +333,6 @@ export default function BrowsePage() {
           )}
         </div>
 
-        {/* Movies Grid */}
         <div>
           <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: 'white', marginBottom: '20px' }}>
             All Movies ({movies.length})
@@ -334,7 +347,6 @@ export default function BrowsePage() {
                 ))}
               </div>
 
-              {/* Pagination */}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
                 <button
                   onClick={() => setPage(Math.max(1, page - 1))}

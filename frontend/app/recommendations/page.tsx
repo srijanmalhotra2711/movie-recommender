@@ -61,16 +61,16 @@ export default function RecommendationsPage() {
     router.push('/login');
   };
 
-  const headerStyle = {
+  const headerStyle: React.CSSProperties = {
     background: '#18181b',
     borderBottom: '1px solid #27272a',
     padding: '16px',
-    position: 'sticky' as const,
+    position: 'sticky',
     top: 0,
     zIndex: 50,
   };
 
-  const buttonStyle = {
+  const buttonStyle: React.CSSProperties = {
     padding: '12px 24px',
     background: 'linear-gradient(to right, #dc2626, #991b1b)',
     color: 'white',
@@ -81,12 +81,12 @@ export default function RecommendationsPage() {
     cursor: 'pointer',
   };
 
-  const statCardStyle = {
+  const statCardStyle: React.CSSProperties = {
     background: '#18181b',
     border: '1px solid #27272a',
     borderRadius: '12px',
     padding: '24px',
-    textAlign: 'center' as const,
+    textAlign: 'center',
   };
 
   if (loading && !recommendations.length) {
@@ -138,6 +138,24 @@ export default function RecommendationsPage() {
               Recommendations
             </button>
             <button 
+              onClick={() => router.push('/trending')} 
+              style={{ padding: '12px 24px', background: 'transparent', color: '#9ca3af', border: 'none', cursor: 'pointer', fontSize: '16px' }}
+            >
+              Trending
+            </button>
+            <button 
+              onClick={() => router.push('/analytics')} 
+              style={{ padding: '12px 24px', background: 'transparent', color: '#9ca3af', border: 'none', cursor: 'pointer', fontSize: '16px' }}
+            >
+              Analytics
+            </button>
+            <button 
+              onClick={() => router.push('/ab-testing')} 
+              style={{ padding: '12px 24px', background: 'transparent', color: '#9ca3af', border: 'none', cursor: 'pointer', fontSize: '16px' }}
+            >
+              A/B Testing
+            </button>
+            <button 
               onClick={() => router.push('/profile')} 
               style={{ padding: '12px 24px', background: 'transparent', color: '#9ca3af', border: 'none', cursor: 'pointer', fontSize: '16px' }}
             >
@@ -154,7 +172,6 @@ export default function RecommendationsPage() {
       </header>
 
       <main style={{ maxWidth: '1400px', margin: '0 auto', padding: '30px 20px' }}>
-        {/* Title */}
         <div style={{ marginBottom: '40px' }}>
           <h2 style={{ fontSize: '36px', fontWeight: 'bold', color: 'white', margin: '0 0 10px 0' }}>
             Your Recommendations
@@ -164,7 +181,6 @@ export default function RecommendationsPage() {
           </p>
         </div>
 
-        {/* Stats */}
         {stats && (
           <div style={{ background: '#18181b', borderRadius: '16px', padding: '30px', marginBottom: '40px', border: '1px solid #27272a' }}>
             <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: 'white', marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -206,7 +222,6 @@ export default function RecommendationsPage() {
           </div>
         )}
 
-        {/* Algorithm Selector */}
         <div style={{ marginBottom: '40px' }}>
           <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: 'white', marginBottom: '20px' }}>
             Choose Algorithm
@@ -225,7 +240,7 @@ export default function RecommendationsPage() {
                     borderRadius: '12px',
                     cursor: 'pointer',
                     transition: 'all 0.2s',
-                    textAlign: 'center' as const,
+                    textAlign: 'center',
                   }}
                 >
                   <div style={{ fontSize: '40px', marginBottom: '12px' }}>{algo.icon}</div>
@@ -241,7 +256,6 @@ export default function RecommendationsPage() {
           </div>
         </div>
 
-        {/* Recommendations */}
         <div>
           <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: 'white', marginBottom: '20px' }}>
             For You {loading && <span style={{ fontSize: '14px', color: '#9ca3af', fontWeight: 'normal' }}>Updating...</span>}

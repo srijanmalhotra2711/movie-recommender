@@ -45,16 +45,16 @@ export default function ProfilePage() {
     router.push('/login');
   };
 
-  const headerStyle = {
+  const headerStyle: React.CSSProperties = {
     background: '#18181b',
     borderBottom: '1px solid #27272a',
     padding: '16px',
-    position: 'sticky' as const,
+    position: 'sticky',
     top: 0,
     zIndex: 50,
   };
 
-  const buttonStyle = {
+  const buttonStyle: React.CSSProperties = {
     padding: '12px 24px',
     background: 'linear-gradient(to right, #dc2626, #991b1b)',
     color: 'white',
@@ -65,7 +65,7 @@ export default function ProfilePage() {
     cursor: 'pointer',
   };
 
-  const statCardStyle = {
+  const statCardStyle: React.CSSProperties = {
     background: '#18181b',
     border: '1px solid #27272a',
     borderRadius: '12px',
@@ -126,6 +126,15 @@ export default function ProfilePage() {
             <button onClick={() => router.push('/recommendations')} style={{ padding: '12px 24px', background: 'transparent', color: '#9ca3af', border: 'none', cursor: 'pointer', fontSize: '16px' }}>
               Recommendations
             </button>
+            <button onClick={() => router.push('/trending')} style={{ padding: '12px 24px', background: 'transparent', color: '#9ca3af', border: 'none', cursor: 'pointer', fontSize: '16px' }}>
+              Trending
+            </button>
+            <button onClick={() => router.push('/analytics')} style={{ padding: '12px 24px', background: 'transparent', color: '#9ca3af', border: 'none', cursor: 'pointer', fontSize: '16px' }}>
+              Analytics
+            </button>
+            <button onClick={() => router.push('/ab-testing')} style={{ padding: '12px 24px', background: 'transparent', color: '#9ca3af', border: 'none', cursor: 'pointer', fontSize: '16px' }}>
+              A/B Testing
+            </button>
             <button style={{ ...buttonStyle, background: '#dc2626' }}>
               Profile
             </button>
@@ -138,7 +147,6 @@ export default function ProfilePage() {
       </header>
 
       <main style={{ maxWidth: '1400px', margin: '0 auto', padding: '30px 20px' }}>
-        {/* Profile Header */}
         <div style={{ marginBottom: '40px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '16px' }}>
             <div style={{ 
@@ -164,7 +172,6 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* Stats Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px', marginBottom: '40px' }}>
           <div style={statCardStyle}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
@@ -213,9 +220,7 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* Charts Section */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '24px', marginBottom: '40px' }}>
-          {/* Rating Distribution */}
           <div style={{ background: '#18181b', border: '1px solid #27272a', borderRadius: '16px', padding: '30px' }}>
             <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: 'white', marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '8px' }}>
               📊 Rating Distribution
@@ -251,7 +256,6 @@ export default function ProfilePage() {
             </div>
           </div>
 
-          {/* Top Genres */}
           <div style={{ background: '#18181b', border: '1px solid #27272a', borderRadius: '16px', padding: '30px' }}>
             <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: 'white', marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '8px' }}>
               🏆 Top Genres
@@ -290,7 +294,6 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* Recent Ratings */}
         {userRatings.length > 0 && (
           <div style={{ background: '#18181b', border: '1px solid #27272a', borderRadius: '16px', overflow: 'hidden' }}>
             <div style={{ padding: '30px 30px 0 30px' }}>

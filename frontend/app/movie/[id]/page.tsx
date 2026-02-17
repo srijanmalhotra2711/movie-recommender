@@ -84,16 +84,16 @@ export default function MovieDetailsPage() {
     router.push('/login');
   };
 
-  const headerStyle = {
+  const headerStyle: React.CSSProperties = {
     background: '#18181b',
     borderBottom: '1px solid #27272a',
     padding: '16px',
-    position: 'sticky' as const,
+    position: 'sticky',
     top: 0,
     zIndex: 50,
   };
 
-  const buttonStyle = {
+  const buttonStyle: React.CSSProperties = {
     padding: '12px 24px',
     background: 'linear-gradient(to right, #dc2626, #991b1b)',
     color: 'white',
@@ -150,6 +150,15 @@ export default function MovieDetailsPage() {
             </button>
             <button onClick={() => router.push('/recommendations')} style={{ padding: '12px 24px', background: 'transparent', color: '#9ca3af', border: 'none', cursor: 'pointer', fontSize: '16px' }}>
               Recommendations
+            </button>
+            <button onClick={() => router.push('/trending')} style={{ padding: '12px 24px', background: 'transparent', color: '#9ca3af', border: 'none', cursor: 'pointer', fontSize: '16px' }}>
+              Trending
+            </button>
+            <button onClick={() => router.push('/analytics')} style={{ padding: '12px 24px', background: 'transparent', color: '#9ca3af', border: 'none', cursor: 'pointer', fontSize: '16px' }}>
+              Analytics
+            </button>
+            <button onClick={() => router.push('/ab-testing')} style={{ padding: '12px 24px', background: 'transparent', color: '#9ca3af', border: 'none', cursor: 'pointer', fontSize: '16px' }}>
+              A/B Testing
             </button>
             <button onClick={() => router.push('/profile')} style={{ padding: '12px 24px', background: 'transparent', color: '#9ca3af', border: 'none', cursor: 'pointer', fontSize: '16px' }}>
               Profile
