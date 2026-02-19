@@ -1,75 +1,62 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from contextlib import asynccontextmanager
-
+from app.database import engine, Base
 from app.config import settings
-from app.database import create_tables
+import logging
+
 from app.api import auth, movies, ratings, recommendations
 
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    """
-    Lifespan context manager for startup and shutdown events.
-    """
-    # Startup
-    print("Starting up...")
-    create_tables()
-    print("Database tables created/verified")
-    
-    yield
-    
-    # Shutdown
-    print("Shutting down...")
+# Create database tables
+Base.metadata.create_all(bind=engine)
+logger.info("Database tables created/verified")
 
-
-# Create FastAPI app
 app = FastAPI(
-    title=settings.APP_NAME,
-    version=settings.VERSION,
-    description="AI-Powered Movie Recommendation System with Hybrid Filtering",
-    lifespan=lifespan
+    title="Movie Recommender API",
+    description="AI-powered movie recommendation system",
+    version="1.0.0"
 )
 
-# Configure CORS
+# CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS,
+    allow_origins=[settings.FRONTEND_URL, "http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # Include routers
-app.include_router(auth.router, prefix="/api")
-app.include_router(movies.router, prefix="/api")
-app.include_router(ratings.router, prefix="/api")
-app.include_router(recommendations.router, prefix="/api")
-
+app.include_router(auth.router, prefix="/auth", tags=["auth"])
+app.include_router(movies.router, prefix="/movies", tags=["movies"])
+app.include_router(ratings.router, prefix="/ratings", tags=["ratings"])
+app.include_router(recommendations.router, prefix="/recommendations", tags=["recommendations"])
 
 @app.get("/")
 async def root():
-    """Root endpoint"""
     return {
         "message": "Welcome to Movie Recommender API",
-        "version": settings.VERSION,
-        "docs": "/docs",
-        "redoc": "/redoc"
+        "version": "1.0.0",
+        "docs": "/docs"
     }
-
 
 @app.get("/health")
 async def health_check():
-    """Health check endpoint"""
     return {"status": "healthy"}
-
 
 if __name__ == "__main__":
     import uvicorn
+    import os
+    
+    port = int(os.getenv("PORT", 8000))
+    logger.info(f"Starting server on port {port}")
     
     uvicorn.run(
         "app.main:app",
         host="0.0.0.0",
-        port=8000,
-        reload=settings.DEBUG
+        port=port,
+        reload=False
     )
