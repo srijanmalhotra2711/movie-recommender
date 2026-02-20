@@ -8,7 +8,7 @@ from app.models.database import Rating, Movie, User
 from app.models.schemas import RatingCreate, RatingUpdate, RatingResponse
 from app.core.security import get_current_user
 
-router = APIRouter(prefix="/ratings", tags=["Ratings"])
+router = APIRouter(tags=["Ratings"])
 
 
 @router.post("/", response_model=RatingResponse, status_code=201)

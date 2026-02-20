@@ -9,7 +9,7 @@ from app.core.security import get_current_user
 from app.recommenders.hybrid import HybridRecommender
 from app.config import settings
 
-router = APIRouter(prefix="/recommendations", tags=["Recommendations"])
+router = APIRouter(tags=["Recommendations"])
 
 
 @router.get("/", response_model=RecommendationsResponse)

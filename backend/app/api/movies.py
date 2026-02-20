@@ -8,7 +8,7 @@ from app.models.database import Movie, Genre, Rating, User
 from app.models.schemas import MovieResponse, MovieListResponse, GenreResponse
 from app.core.security import get_current_user
 
-router = APIRouter(prefix="/movies", tags=["Movies"])
+router = APIRouter(tags=["Movies"])
 
 
 @router.get("/", response_model=MovieListResponse)
